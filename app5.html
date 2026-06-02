@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Geno - Ecosistema Unificado de Inclusión Digital</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: #0b1319;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 15px;
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 8px 0;
+            border-bottom: 2px solid #172a3a;
+        }
+
+        header h1 {
+            font-size: 24px;
+            color: #00ffcc;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 13px;
+            color: #8da2b4;
+            margin-top: 2px;
+        }
+
+        /* Caja de Voz Empática de Geno */
+        .narrador-box {
+            background-color: #172a3a;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+            min-height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #1c354c;
+            margin: 8px 0;
+        }
+
+        #narrador-texto {
+            font-size: 16px;
+            color: #00ffcc;
+            font-weight: bold;
+            line-height: 1.4;
+        }
+
+        /* Contenedor Universal de Pantallas */
+        .pantalla {
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto;
+            gap: 12px;
+            flex-grow: 1;
+            margin-bottom: 10px;
+        }
+
+        .pantalla-activa {
+            display: grid;
+        }
+
+        /* Estilo Bento Base */
+        .bento-btn {
+            background-color: #122230;
+            border: 3px solid #1c354c;
+            border-radius: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .bento-btn:active {
+            transform: scale(0.96);
+            background-color: #00ffcc;
+            border-color: #ffffff;
+        }
+
+        .bento-btn:active .btn-text, .bento-btn:active .btn-icon, .bento-btn:active .sub-text {
+            color: #0b1319;
+        }
+
+        .btn-icon { font-size: 42px; margin-bottom: 6px; }
+        .btn-text { font-size: 18px; font-weight: bold; color: #ffffff; text-transform: uppercase; }
+        .sub-text { font-size: 12px; color: #8da2b4; margin-top: 2px; }
+
+        /* Colores e Identificadores Temáticos */
+        .btn-llamadas .btn-icon { color: #34d399; }
+        .btn-tramites .btn-icon { color: #60a5fa; }
+        .btn-juegos .btn-icon { color: #f59e0b; }
+        .btn-practica .btn-icon { color: #ec4899; }
+        .btn-tutor-global { border-color: #f43f5e; }
+        .btn-tutor-global .btn-icon { color: #f43f5e; }
+        .btn-tutor { border-color: #a855f7; }
+        .btn-tutor .btn-icon { color: #a855f7; }
+        
+        /* Botón de Pánico Crítico */
+        .btn-panico-total {
+            background-color: #7f1d1d;
+            border-color: #ef4444;
+            animation: pulsoRojoBoton 2s infinite;
+        }
+        .btn-panico-total .btn-icon { color: #fca5a5; }
+        .btn-panico-total:active { background-color: #ef4444; }
+
+        @keyframes pulsoRojoBoton {
+            0% { border-color: #ef4444; }
+            50% { border-color: #7f1d1d; }
+            100% { border-color: #ef4444; }
+        }
+
+        .avatar-simulado {
+            width: 50px; height: 50px; border-radius: 50%;
+            background-color: #1e293b; font-size: 24px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 6px; border: 2px solid #a855f7;
+        }
+
+        /* Botón de Retroceso Universal */
+        .btn-atras {
+            grid-column: span 2; background-color: #1f2937;
+            border-color: #4b5563; max-height: 65px;
+            flex-direction: row; gap: 15px; margin-top: auto;
+        }
+        .btn-atras .btn-icon { font-size: 22px; margin-bottom: 0; color: #9ca3af; }
+
+        /* Formularios en Bloque */
+        .pantalla-formulario {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        .input-geno {
+            width: 85%; max-width: 350px;
+            padding: 16px; font-size: 20px;
+            border-radius: 15px; border: 3px solid #1c354c;
+            background-color: #122230; color: #ffffff;
+            text-align: center;
+        }
+
+        .input-geno:focus { border-color: #00ffcc; outline: none; }
+
+        /* Contenedor especial para el teléfono con prefijo chileno */
+        .contenedor-telefono-chile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #122230;
+            border: 3px solid #1c354c;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 350px;
+            padding: 0 16px;
+        }
+        .contenedor-telefono-chile:focus-within {
+            border-color: #00ffcc;
+        }
+        .prefijo-fijo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00ffcc;
+            white-space: nowrap;
+            margin-right: -4px;
+        }
+        .contenedor-telefono-chile .input-geno {
+            border: none;
+            background: transparent;
+            width: 100%;
+            padding: 16px 4px;
+            text-align: left;
+        }
+
+        /* Zona Práctica */
+        .zona-practica-interactiva {
+            grid-column: span 2; background-color: #1e293b;
+            border: 3px dashed #ec4899; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; font-weight: bold; color: #f472b6; cursor: pointer; padding: 30px;
+            text-align: center;
+        }
+        .zona-practica-interactiva:active { background-color: #ec4899; color: #0b1319; }
+
+        /* Panel Administrativo del Tutor Legal */
+        .panel-tutor {
+            background-color: #111827; border: 3px solid #f43f5e;
+            border-radius: 25px; padding: 20px; width: 100%; height: 100%;
+            overflow-y: auto; display: flex; flex-direction: column; gap: 12px;
+            grid-column: span 2;
+        }
+
+        .tarjeta-monitoreo {
+            background-color: #1f2937; padding: 12px; border-radius: 12px;
+            border-left: 5px solid #00ffcc; font-size: 14px; margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        /* Capas de Alertas y Llamadas */
+        .overlay-llamada {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #0b1319; z-index: 20; flex-direction: column;
+            align-items: center; justify-content: center; padding: 30px; text-align: center;
+        }
+
+        .overlay-panico {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: rgba(127, 29, 29, 0.98); z-index: 30; flex-direction: column;
+            align-items: center; justify-content: center; padding: 25px; text-align: center;
+            border: 8px solid #ef4444; animation: flashAlerta 0.5s infinite alternate;
+        }
+
+        @keyframes flashAlerta {
+            0% { background-color: rgba(127, 29, 29, 0.98); border-color: #ef4444; }
+            100% { background-color: rgba(30, 4, 4, 0.98); border-color: #7f1d1d; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SISTEMA GENO</h1>
+        <p id="sub-header">Tu espacio seguro y guiado</p>
+    </header>
+
+    <div class="narrador-box">
+        <p id="narrador-texto">🔒 Hola. Por tu seguridad, escribe tu RUT para poder usar tu celular Geno.</p>
+    </div>
+
+    <div id="pantalla-login" class="pantalla-formulario" style="display: flex;">
+        <h2 style="font-size: 20px; text-align: center; color: #ffffff;">Escribe tu RUT aquí abajo:</h2>
+        <input type="text" id="rut-usuario" class="input-geno" placeholder="Ej: 12.345.678-9" autocomplete="off" oninput="formatearRUT(this)">
+        <div class="bento-btn" style="width: 85%; max-width: 350px; background-color: #059669; border-color: #10b981;" onclick="procesarLoginRUT()">
+            <span class="btn-text">Iniciar Sesión Seguro ➡️</span>
+        </div>
+    </div>
+
+    <div id="pantalla-inicio" class="pantalla" style="grid-template-rows: 1fr 1fr 1fr 1fr; gap: 8px;">
+        <div class="bento-btn btn-llamadas" onclick="cambiarPantalla('pantalla-llamaras', 'Abriendo la mesa de soporte. Aquí puedes pedir ayuda telefónica.')">
+            <span class="btn-icon">📞</span> <span class="btn-text">Ayuda y Soporte</span>
+        </div>
+        <div class="bento-btn btn-tutor" onclick="cambiarPantalla('pantalla-familia', 'Abriendo la lista de tus seres queridos. Aquí puedes llamar o agregar un amigo.')">
+            <span class="btn-icon">🏡</span> <span class="btn-text">Mi Familia</span>
+        </div>
+        <div class="bento-btn btn-tramites" onclick="cambiarPantalla('pantalla-tramites', 'Abriendo zona de trámites seguros. Recuerda guiarte con tu libro impreso.')">
+            <span class="btn-icon">🏛️</span> <span class="btn-text">Mis Trámites</span>
+        </div>
+        <div class="bento-btn btn-juegos" onclick="cambiarPantalla('pantalla-juegos', 'Iniciando tus juegos para pasar un buen rato y ejercitar la mente.')">
+            <span class="btn-icon">🧩</span> <span class="btn-text">Mis Juegos</span>
+        </div>
+        <div class="bento-btn btn-practica" onclick="cambiarPantalla('pantalla-practica', 'Abriendo la zona de entrenamiento para perderle el miedo al touch.')">
+            <span class="btn-icon">🎓</span> <span class="btn-text">Aprende Jugando</span>
+        </div>
+        
+        <div class="bento-btn btn-panico-total" onclick="activarPanicoTotal()">
+            <span class="btn-icon">🚨</span>
+            <span class="btn-text" style="color: #fca5a5;">Botón de Pánico</span>
+            <span class="sub-text" style="color: #fca5a5; font-weight: bold;">Llamar a Emergencias y Familia</span>
+        </div>
+
+        <div class="bento-btn btn-tutor-global" onclick="solicitarAccesoTutor()" style="grid-column: span 2; max-height: 45px; flex-direction: row; gap: 10px;">
+            <span class="btn-icon" style="font-size: 18px; margin-bottom:0;">🛡️</span> <span class="btn-text" style="font-size:13px;">Acceso Supervisor / Tutor Legal</span>
+        </div>
+    </div>
+
+    <div id="pantalla-familia" class="pantalla" style="grid-template-rows: 1fr 1fr 1fr auto;">
+        <div class="bento-btn" onclick="simularLlamadaEstructurada('Hijo Carlos', '+56 9 8765 4321')">
+            <div class="avatar-simulado">👨‍💼</div>
+            <span class="btn-text">Hijo Carlos</span>
+            <span class="sub-text">Llamar al +56 9 8765 4321</span>
+        </div>
+        
+        <div id="contacto-nuevo-ranura" class="bento-btn" style="display: none; border-color: #00ffcc;" onclick="llamarContactoCreado()">
+            <div class="avatar-simulado" style="border-color: #00ffcc;">👤</div>
+            <span class="btn-text" id="nombre-contacto-nuevo">Nuevo</span>
+            <span class="sub-text" id="telefono-contacto-nuevo">Número</span>
+        </div>
+
+        <div class="bento-btn" style="border-color: #10b981; background-color: #064e3b;" onclick="cambiarPantalla('pantalla-agregar-contacto', 'Abriendo el formulario asistido. Vamos a guardar un nombre y un teléfono.')">
+            <span class="btn-icon" style="color: #34d399;">➕</span>
+            <span class="btn-text">Agregar Nuevo</span>
+            <span class="sub-text">Guardar a alguien nuevo</span>
+        </div>
+        <div class="bento-btn btn-atras" onclick="cambiarPantalla('pantalla-inicio', 'Volviendo a la pantalla principal.')">
+            <span class="btn-icon">⬅️</span> <span class="btn-text">Volver</span>
+        </div>
+    </div>
+
+    <div id="pantalla-agregar-contacto" class="pantalla-formulario">
+        <h3 style="color: #00ffcc; font-size: 18px;">1. ¿Cómo se llama tu conocido?</h3>
+        <input type="text" id="nuevo-nombre" class="input-geno" placeholder="Ej: Vecina María">
+        
+        <h3 style="color: #00ffcc; font-size: 18px; margin-top: 5px;">2. Escribe su número de teléfono:</h3>
+        <div class="contenedor-telefono-chile">
+            <span class="prefijo-fijo">(+56) 9 &nbsp;</span>
+            <input type="tel" id="nuevo-telefono" class="input-geno" placeholder="2020 2020" oninput="formatearCelularChileno(this)">
+        </div>
+        
+        <div class="bento-btn" style="width: 85%; max-width: 350px; background-color: #059669; margin-top: 10px;" onclick="guardarContactoCompleto()">
+            <span class="btn-text">💾 Guardar Contacto</span>
+        </div>
+        <div class="bento-btn" style="width: 85%; max-width: 350px; background-color: #374151;" onclick="cambiarPantalla('pantalla-familia', 'Acción cancelada.')">
+            <span class="btn-text">Cancelar</span>
+        </div>
+    </div>
+
+    <div id="pantalla-llamaras" class="pantalla">
+        <div class="bento-btn" style="border-color: #00ffcc;" onclick="simularLlamadaEstructurada('Mesa de Soporte Geno', '600 400 2000')">
+            <span class="btn-icon" style="color: #00ffcc;">🎧</span>
+            <span class="btn-text">Mesa Asistencial</span>
+            <span class="sub-text">Soporte Tecnológico Gratis</span>
+        </div>
+        <div class="bento-btn btn-urgencia" onclick="simularLlamadaEstructurada('Servicio de Ambulancia', '131')">
+            <span class="btn-icon">🚑</span>
+            <span class="btn-text">Ambulancia (131)</span>
+        </div>
+        <div class="bento-btn btn-atras" onclick="cambiarPantalla('pantalla-inicio', 'Volviendo al menú principal.')">
+            <span class="btn-icon">⬅️</span> <span class="btn-text">Volver</span>
+        </div>
+    </div>
+
+    <div id="pantalla-tramites" class="pantalla">
+        <div class="bento-btn" style="border-color: #f97316;" onclick="reproducirVoz('Entrando a BancoEstado de forma protegida. Abre tu libro impreso en la página 12 para seguir los pasos.')">
+            <span class="btn-icon" style="color: #f97316;">💰</span>
+            <span class="btn-text">BancoEstado</span>
+            <span class="sub-text">Revisar CuentaRUT</span>
+        </div>
+        <div class="bento-btn" style="border-color: #3b82f6;" onclick="reproducirVoz('Entrando al portal seguro de pensiones IPS. Recuerda tener a mano tu cédula.')">
+            <span class="btn-icon" style="color: #3b82f6;">🇨🇱</span>
+            <span class="btn-text">IPS / Fonasa</span>
+        </div>
+        <div class="bento-btn btn-atras" onclick="cambiarPantalla('pantalla-inicio', 'Volviendo al menú principal.')">
+            <span class="btn-icon">⬅️</span> <span class="btn-text">Volver</span>
+        </div>
+    </div>
+
+    <div id="pantalla-juegos" class="pantalla">
+        <div class="bento-btn" style="border-color: #f59e0b;" onclick="reproducirVoz('Iniciando el Memorice de Parejas. Encuentra las cartas iguales para ganar.')">
+            <span class="btn-icon" style="color: #f59e0b;">🃏</span>
+            <span class="btn-text">Juego de Memoria</span>
+        </div>
+        <div class="bento-btn" style="border-color: #fbbf24;" onclick="reproducirVoz('Iniciando el Crucigrama de Palabras Tradicionales con letras gigantes.')">
+            <span class="btn-icon" style="color: #fbbf24;">✏️</span>
+            <span class="btn-text">Crucigrama</span>
+        </div>
+        <div class="bento-btn btn-atras" onclick="cambiarPantalla('pantalla-inicio', 'Volviendo al menú principal.')">
+            <span class="btn-icon">⬅️</span> <span class="btn-text">Volver</span>
+        </div>
+    </div>
+
+    <div id="pantalla-practica" class="pantalla">
+        <div class="zona-practica-interactiva" onclick="reproducirVoz('¡Espectacular! Lo hiciste de maravilla. Presionaste justo en el centro. Ese toque suave es todo lo que necesitas para controlar tu celular.')">
+            🎯 ¡PRESIONA AQUÍ AL MEDIO PARA PRACTICAR EL TOQUE DE PANTALLA!
+        </div>
+        <div class="bento-btn btn-atras" onclick="cambiarPantalla('pantalla-inicio', 'Volviendo al menú principal.')">
+            <span class="btn-icon">⬅️</span> <span class="btn-text">Volver</span>
+        </div>
+    </div>
+
+    <div id="pantalla-pin-tutor" class="pantalla-formulario">
+        <h3>Clave del Supervisor / Tutor Legal:</h3>
+        <p style="color: #8da2b4; font-size: 13px;">Digita la clave secreta (Para la simulación usa: 1234)</p>
+        <input type="password" id="pin-tutor" class="input-geno" placeholder="••••" maxlength="4">
+        <div class="bento-btn" style="width: 85%; max-width: 350px; background-color: #f43f5e;" onclick="verificarPinTutor()">
+            <span class="btn-text">Ingresar al Monitoreo 🔒</span>
+        </div>
+        <div class="bento-btn" style="width: 85%; max-width: 350px; background-color: #374151;" onclick="cambiarPantalla('pantalla-inicio', 'Volviendo.')">
+            <span class="btn-text">Volver</span>
+        </div>
+    </div>
+
+    <div id="pantalla-tutor-dashboard" class="pantalla" style="grid-template-columns: 1fr;">
+        <div class="panel-tutor">
+            <h2 style="color: #f43f5e;">🛡️ Panel de Supervisión Remota (Tutor Legal)</h2>
+            <p style="font-size: 13px; color: #9ca3af;">Auditoría y soporte en tiempo real del adulto mayor asignado.</p>
+            
+            <h4 style="margin-top: 10px;">📋 Bitácora de Acciones e Historial de Seguridad:</h4>
+            <div id="historial-acciones" style="max-height: 200px; overflow-y: auto; margin-top: 5px;"></div>
+
+            <h4 style="margin-top: 10px;">⚙️ Configuración del Entorno Híbrido:</h4>
+            <label style="font-size: 13px; display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" checked style="transform: scale(1.3);"> Activar Escudo Inteligente Anti-Estafas en BancoEstado
+            </label>
+
+            <div class="bento-btn btn-atras" style="grid-column: span 1; background-color: #374151; border-color: #4b5563;" onclick="salirModoTutor()">
+                <span class="btn-text">Cerrar Sesión del Supervisor</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="pantalla-llamando" class="overlay-llamada">
+        <div class="animacion-llamada" style="width: 90px; height: 90px; border-radius: 50%; background-color: #172a3a; display: flex; align-items: center; justify-content: center; font-size: 35px; border: 4px solid #34d399; margin-bottom: 20px;">📞</div>
+        <h2 id="contacto-llamando" style="font-size: 26px; color: #00ffcc;">Llamando...</h2>
+        <p id="numero-llamando" style="color: #8da2b4; margin-top: 5px; font-size: 18px;"></p>
+        <button class="bento-btn" style="background-color: #ef4444; padding: 15px 40px; margin-top: 30px; border: none;" onclick="cortarLlamada()">Terminar Comunicación ✖</button>
+    </div>
+
+    <div id="pantalla-panico-activa" class="overlay-panico">
+        <div style="font-size: 70px; margin-bottom: 15px;">🚨</div>
+        <h1 style="font-size: 32px; color: #ffffff; text-transform: uppercase;">¡ALERTA DE PÁNICO!</h1>
+        <p style="font-size: 19px; margin-top: 15px; max-width: 450px; line-height: 1.4;">
+            Activación inmediata. Marcando de fondo a las centrales de **Emergencias ABC** y enviando coordenadas satelitales prioritarias a tus familiares registrados.
+        </p>
+        <div style="background-color: rgba(0,0,0,0.4); padding: 15px; border-radius: 15px; margin-top: 20px; font-weight: bold; border: 2px dashed #ffffff; font-size: 18px;">
+            📞 Comunicando con: 131 / 132 / 133
+        </div>
+        <button class="bento-btn" style="background-color: #ffffff; color: #7f1d1d; padding: 20px 50px; margin-top: 40px; border: none; font-size: 22px;" onclick="desactivarPanicoTotal()">
+            CANCELAR ALERTA
+        </button>
+    </div>
+
+    <script>
+        let usuarioRut = "";
+        let accionesTutor = [];
+        let nuevoContactoGlobal = { nombre: "", telefono: "" };
+
+        // Registro de Auditoría para el Tutor
+        function registrarAccion(accion) {
+            let tiempo = new Date().toLocaleTimeString();
+            accionesTutor.unshift(`[${tiempo}] ${accion}`);
+            let contenedor = document.getElementById('historial-acciones');
+            if(contenedor) {
+                contenedor.innerHTML = accionesTutor.map(t => `<div class="tarjeta-monitoreo">${t}</div>`).join('');
+            }
+        }
+
+        // Formateador automático de RUT chileno (Sin ceros al principio)
+        function formatearRUT(input) {
+            let valor = input.value.replace(/[^0-9kK]/g, '');
+            
+            // Si el primer carácter es un cero, lo elimina inmediatamente
+            if (valor.startsWith('0')) {
+                valor = valor.substring(1);
+            }
+            
+            if (valor.length > 9) {
+                valor = valor.slice(0, 9);
+            }
+            
+            if (valor.length < 2) {
+                input.value = valor;
+                return;
+            }
+            
+            let cuerpo = valor.slice(0, -1);
+            let dv = valor.slice(-1).toUpperCase();
+            
+            let cuerpoFormateado = "";
+            if (cuerpo.length <= 7) {
+                cuerpoFormateado = cuerpo.replace(/(\d+)(\d{3})(\d{3})/, "$1.$2.$3");
+                if (cuerpo.length > 1 && !cuerpoFormateado.includes('.')) {
+                    cuerpoFormateado = cuerpo.replace(/(\d+)(\d{3})/, "$1.$2");
+                }
+            } else {
+                cuerpoFormateado = cuerpo.replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2.$3");
+            }
+            
+            input.value = cuerpoFormateado + '-' + dv;
+        }
+
+        // Formateador inteligente de celular chileno (Separa 2020 2020)
+        function formatearCelularChileno(input) {
+            let digitos = input.value.replace(/\D/g, '');
+            
+            if (digitos.length > 8) {
+                digitos = digitos.slice(0, 8);
+            }
+
+            if (digitos.length > 4) {
+                input.value = digitos.slice(0, 4) + ' ' + digitos.slice(4);
+            } else {
+                input.value = digitos;
+            }
+        }
+
+        // Motor de Voz Humana y Cálida
+        function reproducirVoz(mensaje) {
+            document.getElementById('narrador-texto').innerText = "Geno: \"" + mensaje + "\"";
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel(); 
+                var ut = new SpeechSynthesisUtterance(mensaje);
+                ut.lang = 'es-CL';
+                ut.rate = 0.80;    
+                ut.pitch = 1.22;   
+                window.speechSynthesis.speak(ut);
+            }
+        }
+
+        // Procesa el login con RUT
+        function procesarLoginRUT() {
+            let campoRut = document.getElementById('rut-usuario').value.trim();
+            let numerosPuros = campoRut.replace(/[^0-9kK]/g, '');
+            
+            if(campoRut === "" || numerosPuros.length < 8 || numerosPuros.length > 9) {
+                reproducirVoz("Por seguridad, ingresa tu R U T válido para poder desbloquear tu sistema Geno.");
+                return;
+            }
+            usuarioRut = campoRut;
+            document.getElementById('pantalla-login').style.display = 'none';
+            document.getElementById('sub-header').innerText = "Conexión Segura de Usuario | RUT: " + usuarioRut;
+            cambiarPantalla('pantalla-inicio', `Inicio de sesión correcto. Qué alegría tenerte de vuelta. Tu celular está listo y protegido.`);
+            registrarAccion(`Sesión iniciada correctamente mediante RUT: ${usuarioRut}`);
+        }
+
+        // Cambiador de pantallas dinámico
+        function cambiarPantalla(idNueva, mensajeVoz) {
+            document.querySelectorAll('.pantalla, .pantalla-formulario').forEach(p => p.style.display = 'none');
+            document.getElementById(idNueva).style.display = (idNueva.includes('formulario') || idNueva.includes('login') || idNueva.includes('pin')) ? 'flex' : 'grid';
+            if(mensajeVoz) reproducirVoz(mensajeVoz);
+        }
+
+        // Guarda contactos ingresados por el adulto mayor
+        function guardarContactoCompleto() {
+            let nombre = document.getElementById('nuevo-nombre').value.trim();
+            let telefonoIngresado = document.getElementById('nuevo-telefono').value.trim();
+            let numerosPuros = telefonoIngresado.replace(/\D/g, '');
+            
+            if(nombre === "" || numerosPuros.length !== 8) {
+                reproducirVoz("Para poder guardar, necesito que anotes el nombre y los 8 números restantes del teléfono.");
+                return;
+            }
+            
+            let telefonoCompleto = "+56 9 " + telefonoIngresado;
+            
+            nuevoContactoGlobal.nombre = nombre;
+            nuevoContactoGlobal.telefono = telefonoCompleto;
+
+            document.getElementById('nombre-contacto-nuevo').innerText = nombre;
+            document.getElementById('telefono-contacto-nuevo').innerText = "Llamar al " + telefonoCompleto;
+            document.getElementById('contacto-nuevo-ranura').style.display = 'flex';
+            
+            registrarAccion(`El usuario creó un nuevo contacto de confianza: ${nombre} (${telefonoCompleto})`);
+            cambiarPantalla('pantalla-familia', `Estupendo. Guardamos a ${nombre} con su número de teléfono correctamente.`);
+            
+            document.getElementById('nuevo-nombre').value = "";
+            document.getElementById('nuevo-telefono').value = "";
+        }
+
+        // Llamar al contacto creado dinámicamente
+        function llamarContactoCreado() {
+            simularLlamadaEstructurada(nuevoContactoGlobal.nombre, nuevoContactoGlobal.telefono);
+        }
+
+        // Lanza la interfaz de llamada activa
+        function simularLlamadaEstructurada(nombre, numero) {
+            registrarAccion(`Llamada saliente telefónica iniciada hacia: ${nombre} (${numero})`);
+            document.getElementById('contacto-llamando').innerText = nombre;
+            document.getElementById('numero-llamando').innerText = "Marcando número: " + numero;
+            document.getElementById('pantalla-llamando').style.display = 'flex';
+            reproducirVoz(`Estoy llamando a tu contacto de confianza: ${nombre}. No te preocupes, relájate.`);
+        }
+
+        // Corta la comunicación
+        function cortarLlamada() {
+            document.getElementById('pantalla-llamando').style.display = 'none';
+            if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); }
+            registrarAccion("Llamada colgada y finalizada por el usuario.");
+            cambiarPantalla('pantalla-inicio', "Llamada terminada de forma segura.");
+        }
+
+        // Función del Botón de Pánico Unificado
+        function activarPanicoTotal() {
+            registrarAccion(`🚨 CRÍTICO: ¡El usuario activó el BOTÓN DE PÁNICO! Notificando redes de emergencia y alertando al Tutor.`);
+            document.getElementById('pantalla-panico-activa').style.display = 'flex';
+            reproducirVoz("Atención. Activaste tu botón de pánico. Estoy llamando inmediatamente a las centrales de emergencia y avisando a toda tu familia en este instante. Quédate tranquilo.");
+        }
+
+        function desactivarPanicoTotal() {
+            document.getElementById('pantalla-panico-activa').style.display = 'none';
+            if ('speechSynthesis' in window) { window.speechSynthesis.cancel(); }
+            registrarAccion(`Estado de alerta de pánico cancelado manualmente por el usuario.`);
+            cambiarPantalla('pantalla-inicio', "Alerta cancelada. Volvimos a la pantalla de inicio en un entorno seguro.");
+        }
+
+        // Seguridad del Supervisor
+        function solicitarAccesoTutor() {
+            document.getElementById('pin-tutor').value = "";
+            cambiarPantalla('pantalla-pin-tutor', "Espacio de control del supervisor legal. Por favor ingresa tu código de acceso.");
+        }
+
+        function verificarPinTutor() {
+            let pin = document.getElementById('pin-tutor').value;
+            if(pin === "1234") {
+                cambiarPantalla('pantalla-tutor-dashboard', "");
+                registrarAccion("Tutor Legal ingresó exitosamente al panel de supervisión remota.");
+            } else {
+                reproducirVoz("Clave incorrecta. Por favor, verifica tu código de supervisor.");
+            }
+        }
+
+        function salirModoTutor() {
+            registrarAccion("Tutor Legal cerró la sesión de auditoría.");
+            cambiarPantalla('pantalla-inicio', "Saliendo del modo supervisor. Volviendo al menú protegido.");
+        }
+
+        // Inicialización base
+        registrarAccion("Ecosistema Geno cargado. Esperando autenticación por RUN.");
+    </script>
+</body>
+</html>
