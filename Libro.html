@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Manual Digital Inteligente - Sistema Geno</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CONFIGURACIÓN DE PÁGINA (ESTILO INTERFAZ LIMPIA) --- */
+        @page {
+            size: A4;
+            margin: 20mm 15mm 20mm 15mm;
+            background-color: #f8fafc; /* Fondo claro, limpio y vivo */
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', system-ui, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b; /* Texto oscuro de alta legibilidad */
+            font-size: 12pt;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page-break {
+            page-break-after: always;
+        }
+
+        /* --- PORTADA VIVA Y FUTURISTA --- */
+        .cover {
+            padding-top: 40mm;
+            text-align: center;
+            height: 100%;
+        }
+
+        .cover-hero {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%);
+            border: 3px solid #0ea5e9;
+            border-radius: 32px;
+            margin: 0 auto 30px auto;
+            padding: 50px 30px;
+            max-width: 85%;
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.1);
+        }
+
+        .cover-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28pt;
+            margin: 0;
+            font-weight: 700;
+            color: #0369a1;
+            line-height: 1.2;
+        }
+
+        .cover-hero p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12pt;
+            margin: 20px 0 0 0;
+            color: #16a34a;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .cover-tagline {
+            font-size: 14pt;
+            color: #64748b;
+            max-width: 550px;
+            margin: 40px auto 0 auto;
+            font-weight: 400;
+        }
+
+        /* --- LAYOUT DE 3 COLUMNAS ULTRA-CENTRADO --- */
+        .layout-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            margin-bottom: 20px;
+        }
+
+        /* Columnas laterales (Tips amigables) */
+        .sidebar-left {
+            width: 24%;
+            padding-right: 20px;
+            vertical-align: top;
+        }
+
+        .sidebar-right {
+            width: 24%;
+            padding-left: 20px;
+            vertical-align: top;
+        }
+
+        /* Columna Central (El núcleo del mensaje - Ancho y limpio) */
+        .main-content {
+            width: 52%;
+            padding: 0 25px;
+            vertical-align: top;
+            border-left: 2px dashed #e2e8f0;
+            border-right: 2px dashed #e2e8f0;
+        }
+
+        /* --- ENCABEZADOS DE CAPÍTULOS VIVOS --- */
+        .chapter-header {
+            background: linear-gradient(90deg, #0ea5e9 0%, #22c55e 100%);
+            padding: 14px 24px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.15);
+        }
+
+        .chapter-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16pt;
+            color: #ffffff;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14pt;
+            color: #0284c7;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #334155;
+            font-size: 11.5pt;
+            font-weight: 400;
+        }
+
+        /* --- TARJETAS DE INFORMACIÓN (PASO A PASO FACILÓN) --- */
+        .info-card {
+            background-color: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .info-card.secure {
+            border-color: #4ade80;
+            background-color: #f0fdf4;
+        }
+        
+        .info-card.danger {
+            border-color: #f87171;
+            background-color: #fef2f2;
+        }
+
+        /* --- BOTONES E ICONOS VISUALES GRANDES --- */
+        .step-badge {
+            background-color: #0ea5e9;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 10pt;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .visual-button {
+            display: block;
+            background-color: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-top: 10px;
+            text-decoration: none;
+            font-size: 11pt;
+            box-shadow: 0 4px 12px rgba(37, 99, 211, 0.2);
+        }
+
+        .visual-button.fake {
+            background-color: #dc2626;
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+        }
+
+        /* --- WIDGETS LATERALES (TIPS FLOTANTES) --- */
+        .widget-tip {
+            background-color: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 14px;
+            margin-bottom: 15px;
+            font-size: 10pt;
+            color: #475569;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+        }
+
+        .widget-tip strong {
+            color: #0f172a;
+            display: block;
+            margin-bottom: 4px;
+            font-size: 10.5pt;
+        }
+
+        .widget-tip.green { border-left: 5px solid #22c55e; }
+        .widget-tip.red { border-left: 5px solid #ef4444; }
+        .widget-tip.blue { border-left: 5px solid #3b82f6; }
+
+        .emoji-icon {
+            font-size: 18pt;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- MOCKUPS SIMPLES (SIMULAR PANTALLAS DEL CELULAR) --- */
+        .phone-screen {
+            border: 2px solid #cbd5e1;
+            border-radius: 16px;
+            background: #f8fafc;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .phone-bar {
+            background: #e2e8f0;
+            padding: 6px 12px;
+            font-size: 9pt;
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .phone-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .sms-text {
+            background: #ffffff;
+            border: 1px solid #fca5a5;
+            padding: 12px;
+            border-radius: 12px;
+            color: #991b1b;
+            font-size: 10pt;
+            text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page-break">
+        <div class="cover">
+            <div class="cover-hero">
+                <h1>Mi Manual Digital<br>Fácil y Seguro</h1>
+                <p>Sistema Amigo Geno</p>
+            </div>
+            <div class="cover-tagline">
+                Un libro diseñado con letras grandes y pantallas claras. Todo lo importante está en el centro de la página para que leas sin esfuerzo y navegues sin miedo.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break">
+        <div class="chapter-header">
+            <h2>Paso 01 // Tu Llave Digital (La ClaveÚnica)</h2>
+        </div>
+        
+        <table class="layout-table">
+            <tr>
+                <td class="sidebar-left">
+                    <div class="widget-tip blue">
+                        <span class="emoji-icon">🔑</span>
+                        <strong>¿Qué es?</strong>
+                        Es como la llave de tu casa, pero sirve para entrar a las oficinas del internet.
+                    </div>
+                </td>
+                
+                <td class="main-content">
+                    <h3>¿Cómo usarla sin cometer errores?</h3>
+                    <p>
+                        La ClaveÚnica te sirve para ver tus bonos, tus papeles médicos y trámites del gobierno (ChileAtiende). No le tengas miedo, solo debes seguir tres pasos limpios:
+                    </p>
+                    
+                    <div class="info-card">
+                        <span class="step-badge">Paso 1</span>
+                        <p style="margin:0; font-weight: 600;">Mira la pantalla de tu celular o computador arriba del todo. Tienes que escribir exactamente esto:</p>
+                        <p style="color:#2563eb; font-weight:bold; font-size:14pt; text-align:center; margin:10px 0;">claveunica.gob.cl</p>
+                    </div>
+
+                    <div class="info-card">
+                        <span class="step-badge">Paso 2</span>
+                        <p style="margin:0;">Busca un <strong>dibujo de un candado cerrado</strong> arriba, al lado de lo que escribiste. Si el candado está cerrado, estás seguro.</p>
+                    </div>
+                </td>
+                
+                <td class="sidebar-right">
+                    <div class="widget-tip red">
+                        <span class="emoji-icon">🛑</span>
+                        <strong>¡Regla de Oro!</strong>
+                        Ningún trabajador del gobierno te va a llamar por teléfono para pedirte esta contraseña. ¡Nunca la digas!
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="page-break">
+        <div class="chapter-header">
+            <h2>Paso 02 // Aprende a reconocer las trampas</h2>
+        </div>
+        
+        <table class="layout-table">
+            <tr>
+                <td class="sidebar-left">
+                    <div class="widget-tip green">
+                        <span class="emoji-icon">🟢</span>
+                        <strong>El color de la paz</strong>
+                        Las páginas buenas son tranquilas, no te apuran ni te asustan.
+                    </div>
+                </td>
+                
+                <td class="main-content">
+                    <h3>Compara las pantallas antes de tocar</h3>
+                    <p>
+                        A la gente mala le gusta inventar páginas parecidas para robar tus datos. Mira este ejemplo visual para que no te engañen:
+                    </p>
+                    
+                    <div class="info-card secure">
+                        <h3 style="color:#16a34a; margin:0;"><span class="emoji-icon" style="display:inline; font-size:14pt;">✅</span> Página Verdadera</h3>
+                        <div class="phone-screen">
+                            <div class="phone-bar">🔒 https://claveunica.gob.cl</div>
+                            <div class="phone-body">
+                                <p style="font-size:10pt; margin-bottom:5px;">Entrada Oficial del Estado</p>
+                                <div class="visual-button">Ingresar con mi RUN</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card danger">
+                        <h3 style="color:#dc2626; margin:0;"><span class="emoji-icon" style="display:inline; font-size:14pt;">❌</span> Página Falsa (Trampa)</h3>
+                        <div class="phone-screen" style="border-color:#fca5a5;">
+                            <div class="phone-bar" style="background:#fee2e2; color:#991b1b;">⚠️ http://bono-claveunica.com</div>
+                            <div class="phone-body">
+                                <p style="font-size:10pt; margin-bottom:5px; color:#991b1b; font-weight:bold;">¡GÁNATE UN BONO AQUÍ REVENTANDO ESTE BOTÓN!</p>
+                                <div class="visual-button fake">¡Cobrar Dinero Ya!</div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                
+                <td class="sidebar-right">
+                    <div class="widget-tip red">
+                        <span class="emoji-icon">🚨</span>
+                        <strong>¿Cómo pillarlos?</strong>
+                        Si la página termina en algo raro como <strong style="color:#ef4444;">.com</strong> o <strong style="color:#ef4444;">.net</strong> en vez de <strong style="color:#16a34a;">.gob.cl</strong>, ¡sal de ahí de inmediato!
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <div class="chapter-header">
+            <h2>Paso 03 // Cuidar tu platita (CuentaRUT)</h2>
+        </div>
+        
+        <table class="layout-table">
+            <tr>
+                <td class="sidebar-left">
+                    <div class="widget-tip blue">
+                        <span class="emoji-icon">📱</span>
+                        <strong>La aplicación</strong>
+                        Usa siempre la aplicación oficial del BancoEstado en tu celular. Es la forma más limpia y segura de ver tu dinero.
+                    </div>
+                </td>
+                
+                <td class="main-content">
+                    <h3>Cuidado con los mensajes de texto asustadores</h3>
+                    <p>
+                        A veces llegan mensajes al celular que dicen que tu tarjeta se bloqueó. ¡Es mentira para que te asustes y les entregues tus claves!
+                    </p>
+                    
+                    <div class="info-card danger">
+                        <h3 style="color:#dc2626; font-size:11pt; margin-bottom:10px;">Ejemplo de mensaje tramposo:</h3>
+                        <div class="sms-text">
+                            "BancoEstado Alerta: Su cuenta se ha bloqueado por seguridad. Para arreglarlo y recuperar su plata entre a este enlace: <u>www.bancoestado-arreglar.cl</u>"
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin-top:25px;">¿Qué tienes que hacer tú?</h3>
+                    <div class="info-card" style="border-left: 6px solid #2563eb;">
+                        <p style="margin:0; font-weight:500;">
+                            Si el mensaje trae un <strong>enlace (un texto azul subrayado)</strong>, no lo toques. El banco de verdad nunca manda textos con botones para apretar.
+                        </p>
+                    </div>
+                </td>
+                
+                <td class="sidebar-right">
+                    <div class="widget-tip red">
+                        <span class="emoji-icon">🧠</span>
+                        <strong>Si te pones nervioso:</strong>
+                        Cierra el celular, déjalo sobre la mesa, respira profundo y llámale a un hijo, nieto o persona de confianza para que te ayude a mirar.
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

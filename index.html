@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grillo Digital Geno | Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --card: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(26, 188, 156, 0.15);
+            --primary: #1abc9c;
+            --primary-glow: rgba(26, 188, 156, 0.4);
+            --accent: #2ecc71;
+            --text: #f3f4f6;
+            --muted: #9ca3af;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; min-height: 100vh; }
+
+        /* Fondo Animado Exótico */
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 85% 15%, rgba(26, 188, 156, 0.12), transparent 45%),
+                radial-gradient(circle at 15% 85%, rgba(46, 204, 113, 0.08), transparent 45%);
+            z-index: -1;
+        }
+
+        /* Navbar Con Zoom de Logo */
+        header {
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            background: rgba(3, 7, 18, 0.85);
+            padding: 1.2rem 6%; position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .logo-group { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-text { font-family: 'Poppins'; font-weight: 800; font-size: 1.6rem; color: #fff; letter-spacing: -0.5px; }
+        .logo-text span { color: var(--primary); }
+        
+        .nav-container { display: flex; align-items: center; gap: 40px; }
+        nav { display: flex; gap: 25px; }
+        nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s ease; }
+        nav a:hover, nav a.active { color: var(--primary); }
+
+        .logo-crop { 
+            width: 52px; height: 52px; border-radius: 50%; 
+            border: 2px solid var(--primary); overflow: hidden; 
+            display: flex; align-items: center; justify-content: center; 
+            background: #111827; box-shadow: 0 0 15px var(--primary-glow);
+        }
+        .logo-crop img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); }
+
+        /* Contenedor Principal */
+        main { max-width: 1300px; margin: 0 auto; padding: 4rem 6%; }
+
+        /* Hero Section */
+        .hero-section { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: center; margin-bottom: 6rem; }
+        .hero-info h1 { font-family: 'Poppins'; font-size: 4.2rem; font-weight: 800; line-height: 1.05; margin-bottom: 1.8rem; letter-spacing: -1px; }
+        .hero-info h1 span { background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-info p { font-size: 1.25rem; color: var(--muted); margin-bottom: 3rem; line-height: 1.7; font-weight: 300; }
+        
+        .btn-glow { 
+            background: var(--primary); color: #000; padding: 1.1rem 2.8rem; border-radius: 100px; 
+            font-weight: 700; text-decoration: none; display: inline-block; transition: all 0.3s ease; 
+            box-shadow: 0 8px 25px var(--primary-glow); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+        }
+        .btn-glow:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(26, 188, 156, 0.6); background: #1abc9c; }
+
+        /* Bento Grid Exótico */
+        .bento-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .bento-item { background: var(--card); border: 1px solid var(--card-border); border-radius: 28px; padding: 35px; backdrop-filter: blur(8px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .bento-item:hover { transform: scale(1.02); border-color: var(--primary); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        .bento-item h2 { font-size: 3rem; font-family: 'Poppins'; color: var(--primary); margin-bottom: 10px; font-weight: 700; }
+        .bento-item h3 { font-family: 'Poppins'; font-size: 1.4rem; margin-bottom: 15px; color: #fff; }
+        .bento-item p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+        .full-width { grid-column: span 2; background: linear-gradient(145deg, rgba(17,24,39,0.8), rgba(3,7,18,0.9)); }
+
+        /* Árbol del problema simplificado */
+        .problem-container { margin-top: 6rem; text-align: center; }
+        .problem-title { font-family: 'Poppins'; font-size: 2.5rem; margin-bottom: 3rem; }
+        .problem-title span { color: var(--primary); }
+        .tree-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .tree-node { background: rgba(31, 41, 55, 0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
+        .tree-node h4 { color: var(--accent); margin-bottom: 10px; font-family: 'Poppins'; }
+
+        footer { text-align: center; padding: 4rem 0; color: var(--muted); font-size: 0.85rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; }
+        
+        /* Animaciones */
+        .animate { animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-group">
+            <div class="logo-text">Grillo Digital <span>Geno</span></div>
+        </a>
+        <div class="nav-container">
+            <nav>
+                <a href="index.html" class="active">Inicio</a>
+                <a href="caracteristicas.html">Tecnología</a>
+                <a href="tutorial.html">Tutoriales</a>
+                <a href="descarga.html">Descargar</a>
+            </nav>
+            <div class="logo-crop">
+                <img src="geno.png" alt="Geno">
+            </div>
+        </div>
+    </header>
+
+    <main class="animate">
+        <section class="hero-section">
+            <div class="hero-info">
+                <h1>Rompiendo la <span>Brecha Digital</span> con Empatía</h1>
+                <p>No se trata de cambiar a los adultos mayores, se trata de adaptar la tecnología a su realidad. Un ecosistema diseñado desde Chile rural para devolver la autonomía perdida.</p>
+                <a href="caracteristicas.html" class="btn-glow">Descubrir Ecosistema</a>
+            </div>
+            
+            <div class="bento-layout">
+                <div class="bento-item">
+                    <h2>88%</h2>
+                    <h3>Conectividad base</h3>
+                    <p>Porcentaje de adultos mayores con acceso técnico a redes en Chile, pero sin capacidades de uso.</p>
+                </div>
+                <div class="bento-item">
+                    <h2>42%</h2>
+                    <h3>Uso Activo Real</h3>
+                    <p>La cruda brecha: menos de la mitad logra interactuar de forma autónoma con sus dispositivos.</p>
+                </div>
+                <div class="bento-item full-width">
+                    <h3>El Gran Dolor: Trámites Estáticos</h3>
+                    <p>Plataformas complejas como la ClaveÚnica aíslan digitalmente a personas de zonas como El Monte. Geno interviene ahí: un puente interactivo que traduce la fricción del software a lenguaje natural, simple y asistido.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="problem-container">
+            <h2 class="problem-title">El Foco de <span>Geno</span></h2>
+            <div class="tree-grid">
+                <div class="tree-node">
+                    <h4>Causas Base</h4>
+                    <p>Falta de alfabetización, miedo al fraude económico, interfaces caóticas con tipografías ilegibles.</p>
+                </div>
+                <div class="tree-node">
+                    <h4>El Problema Central</h4>
+                    <p>Dependencia absoluta del Adulto Mayor de terceros para ejecutar actividades digitales básicas.</p>
+                </div>
+                <div class="tree-node">
+                    <h4>Efecto Final</h4>
+                    <p>Aislamiento social, desactualización de beneficios estatales y pérdida severa de su autoconfianza.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Grillo Digital Geno. Proyecto de Innovación Tecnológica para Adultos Mayores.</p>
+    </footer>
+
+</body>
+</html>

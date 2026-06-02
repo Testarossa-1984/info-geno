@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geno | Descarga e Innovación</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020617;
+            --primary: #1abc9c;
+            --accent: #2ecc71;
+            --card: #0f172a;
+            --text: #f8fafc;
+            --muted: #64748b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg); color: var(--text); min-height: 100vh; }
+
+        header {
+            backdrop-filter: blur(16px); background: rgba(2, 6, 23, 0.85);
+            padding: 1.2rem 6%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .logo-group { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .logo-text { font-family: 'Poppins'; font-weight: 800; font-size: 1.6rem; color: #fff; }
+        .logo-text span { color: var(--primary); }
+        .nav-container { display: flex; align-items: center; gap: 40px; }
+        nav a { color: var(--text); text-decoration: none; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; margin-left: 20px; transition: 0.3s; }
+        nav a:hover { color: var(--primary); }
+        
+        .logo-crop { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--primary); overflow: hidden; }
+        .logo-crop img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); }
+
+        .container { max-width: 1100px; margin: 5rem auto; padding: 0 6%; }
+        h1 { font-family: 'Poppins'; font-size: 3rem; text-align: center; margin-bottom: 4rem; font-weight: 700; }
+        h1 span { color: var(--primary); }
+
+        /* Matriz de Comparación Avanzada */
+        .matrix-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--card); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 6rem; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .matrix-table th, .matrix-table td { padding: 22px 25px; text-align: left; font-size: 0.95rem; }
+        .matrix-table th { background: rgba(26, 188, 156, 0.1); color: var(--primary); font-family: 'Poppins'; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(26, 188, 156, 0.2); }
+        .matrix-table td { border-bottom: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; }
+        .matrix-table tr:last-child td { border: none; }
+        .matrix-highlight { color: var(--accent) !important; font-weight: 600; }
+
+        /* Cajas de Descarga Duales Exóticas */
+        .download-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .box-download { background: linear-gradient(145deg, #0f172a, #1e1b4b); padding: 50px; border-radius: 36px; border: 1px solid rgba(26, 188, 156, 0.2); position: relative; transition: all 0.3s ease; }
+        .box-download:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(26, 188, 156, 0.2); }
+        .box-download h3 { font-family: 'Poppins'; font-size: 1.6rem; color: #fff; margin-bottom: 15px; }
+        .box-download p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 30px; }
+        
+        .btn-action { background: #fff; color: #000; padding: 1rem 2rem; border-radius: 14px; text-decoration: none; font-weight: 700; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; font-size: 0.9rem; }
+        .btn-action:hover { background: var(--primary); color: #fff; }
+
+        /* Sección de Referentes */
+        .referents { margin-top: 6rem; text-align: center; color: var(--muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo-group">
+            <div class="logo-text">Grillo Digital <span>Geno</span></div>
+        </a>
+        <div class="nav-container">
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="caracteristicas.html">Tecnología</a>
+                <a href="tutorial.html">Tutoriales</a>
+                <a href="descarga.html" class="active">Descargar</a>
+            </nav>
+            <div class="logo-crop"><img src="geno.png" alt="Geno"></div>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Validación & <span>Despliegue</span></h1>
+
+        <table class="matrix-table">
+            <thead>
+                <tr>
+                    <th>Dimensión Evaluada</th>
+                    <th>Modo Adulto Mayor Estándar</th>
+                    <th>Ecosistema Grillo Geno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Complejidad de Interfaz</td>
+                    <td>Media-Alta (Saturación de iconos)</td>
+                    <td class="matrix-highlight">Nula (4 cuadrantes intuitivos)</td>
+                </tr>
+                <tr>
+                    <td>Independencia de Red</td>
+                    <td>Ninguna (Requiere Datos/Wi-Fi)</td>
+                    <td class="matrix-highlight">Alta (Sincronización con Manual Físico)</td>
+                </tr>
+                <tr>
+                    <td>Estrategia de Aprendizaje</td>
+                    <td>Prueba y Error (Estrés cognitivo)</td>
+                    <td class="matrix-highlight">Híbrida (Voz, Video y Soporte Análogo)</td>
+                </tr>
+                <tr>
+                    <td>Mecanismo de Seguridad</td>
+                    <td>Filtros nativos pasivos e invisibles</td>
+                    <td class="matrix-highlight">Escudo Visual Activo con alerta familiar</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="download-layout">
+            <div class="box-download">
+                <h3>Instalar Interfaz Principal</h3>
+                <p>Convierte el teléfono inteligente del adulto mayor en un entorno seguro Grillo Geno. Optimizado para pantallas AMOLED y sistemas Android básicos.</p>
+                <a href="#" class="btn-action">📥 Descargar Launcher (.APK)</a>
+            </div>
+            
+            <div class="box-download" style="border-color: rgba(52, 152, 219, 0.2); background: linear-gradient(145deg, #0f172a, #0c4a6e);">
+                <h3>Aplicación de Monitoreo</h3>
+                <p>Para hijos, nietos o tutores. Gestiona los accesos, números de emergencia prioritarios y asiste en vivo mediante control remoto de baja latencia.</p>
+                <a href="https://testarossa-1984.github.io/sistema-geno/" class="btn-action" style="background: var(--primary); color:#000;">📱 Descargar Companion App</a>
+            </div>
+        </div>
+
+        <div class="referents">
+            Inspirado en referentes globales: Conecta Mayor • Life Go App • Vodafone Easy • Apple Accessibility
+        </div>
+    </div>
+
+</body>
+</html>
